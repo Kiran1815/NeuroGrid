@@ -1,0 +1,8 @@
+{
+  "appId": "com.neurogrid.app",
+  "appName": "NeuroGrid",
+  "webDir": "dist",
+  "server": {
+    "cleartext": true
+  }
+}

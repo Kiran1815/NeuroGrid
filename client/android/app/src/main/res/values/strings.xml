@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">NeuroGrid</string>
+    <string name="title_activity_main">NeuroGrid</string>
+    <string name="package_name">com.neurogrid.app</string>
+    <string name="custom_url_scheme">com.neurogrid.app</string>
+</resources>

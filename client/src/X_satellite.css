@@ -1,0 +1,384 @@
+/* ============================================================
+   NEUROGRID-X SATELLITE LAYER — DESIGN SYSTEM
+   Inherits earth palette from index.css. X-specific extensions only.
+   Uses --earth-* base + amber accent. Teal only for satellite sensor UI.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+:root {
+  /* X-Layer palette — complements earth system */
+  --x-bg:              var(--earth-obsidian);       /* #1A1208 — same root */
+  --x-panel-bg:        var(--earth-charcoal);       /* #2C2416 */
+  --x-panel-border:    var(--earth-soil);           /* #5C4A2A — amber-brown */
+  --x-text-primary:    var(--earth-parchment);      /* #E8D9C0 */
+  --x-text-secondary:  var(--earth-sand);           /* #A08C6E */
+  --x-text-dim:        var(--earth-clay);           /* #C4A882 */
+  --x-accent:          var(--accent-amber);         /* #E67E22 */
+  --x-accent-glow:     rgba(230, 126, 34, 0.25);
+
+  /* Status colors */
+  --x-ok:              var(--signal-safe);          /* #4A7C59 green */
+  --x-warn:            var(--data-pulse);           /* #F39C12 amber */
+  --x-danger:          var(--signal-critical);      /* #C0392B red */
+  --x-info:            var(--signal-mesh);          /* #2E6B8A blue */
+
+  /* SAR / satellite sensor teal (only used in VSAT/SAR tech elements) */
+  --x-satellite-teal:  #0097A7;
+  --x-satellite-ice:   #B3E5FC;
+
+  /* Severity — disaster levels */
+  --x-catastrophic:    #B71C1C;
+  --x-severe:          #E65100;
+  --x-moderate:        #F9A825;
+  --x-minor:           #558B2F;
+
+  /* Fonts — pick up from earth system */
+  --x-font-terminal:   var(--font-data);            /* Share Tech Mono */
+  --x-font-military:   'Rajdhani', var(--font-display);
+  --x-font-ui:         var(--font-ui);
+
+  /* Layout */
+  --x-header-h:        52px;
+  --x-tabs-h:          40px;
+}
+
+/* ============================================================
+   LAYOUT SKELETON
+   ============================================================ */
+.x-ndma-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--x-bg);
+  overflow: hidden;
+}
+
+.x-ndma-header {
+  height: var(--x-header-h);
+  min-height: var(--x-header-h);
+  background: var(--earth-charcoal);
+  border-bottom: 1px solid var(--earth-soil);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 20px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.x-ndma-tabs {
+  height: var(--x-tabs-h);
+  min-height: var(--x-tabs-h);
+  background: var(--earth-bark);
+  border-bottom: 1px solid var(--earth-soil);
+  display: flex;
+  align-items: stretch;
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+
+.x-ndma-content {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--x-bg);
+}
+
+/* ============================================================
+   TAB BUTTONS
+   ============================================================ */
+.x-tab-btn {
+  padding: 0 18px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: var(--earth-sand);
+  font-family: var(--x-font-terminal);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s, border-bottom-color 0.15s;
+  flex-shrink: 0;
+}
+
+.x-tab-btn:hover {
+  color: var(--earth-parchment);
+  background: rgba(255,255,255,0.03);
+}
+
+.x-tab-btn.active {
+  color: var(--accent-amber);
+  border-bottom-color: var(--accent-amber);
+  background: rgba(230,126,34,0.06);
+  font-weight: 600;
+}
+
+/* ============================================================
+   PANEL CARD
+   ============================================================ */
+.x-panel {
+  background: var(--earth-charcoal);
+  border: 1px solid var(--earth-soil);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.x-panel__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--earth-bark);
+  border-bottom: 1px solid var(--earth-soil);
+  font-family: var(--x-font-terminal);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  color: var(--earth-sand);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.x-panel__body {
+  padding: 12px 14px;
+  flex: 1;
+  overflow: auto;
+}
+
+/* ============================================================
+   BADGE
+   ============================================================ */
+.x-badge {
+  font-family: var(--x-font-terminal);
+  font-size: 0.52rem;
+  letter-spacing: 0.1em;
+  padding: 2px 7px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.x-badge--ok {
+  background: rgba(74,124,89,0.25);
+  border: 1px solid rgba(74,124,89,0.5);
+  color: #6FCF97;
+}
+
+.x-badge--warn {
+  background: rgba(243,156,18,0.2);
+  border: 1px solid rgba(243,156,18,0.4);
+  color: #F9A825;
+}
+
+.x-badge--danger {
+  background: rgba(192,57,43,0.2);
+  border: 1px solid rgba(192,57,43,0.4);
+  color: #EB5757;
+}
+
+.x-badge--info {
+  background: rgba(46,107,138,0.25);
+  border: 1px solid rgba(46,107,138,0.5);
+  color: #56CCF2;
+}
+
+/* ============================================================
+   METRICS
+   ============================================================ */
+.x-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.x-metric__label {
+  font-family: var(--x-font-terminal);
+  font-size: 0.5rem;
+  color: var(--earth-sand);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.x-metric__value {
+  font-family: var(--x-font-terminal);
+  font-size: 0.85rem;
+  color: var(--earth-parchment);
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.x-metric__value--green  { color: #6FCF97; }
+.x-metric__value--teal   { color: #56CCF2; }
+.x-metric__value--amber  { color: var(--accent-amber); }
+.x-metric__value--red    { color: #EB5757; }
+
+/* ============================================================
+   PROGRESS BARS
+   ============================================================ */
+.x-bar-track {
+  height: 6px;
+  background: var(--earth-soil);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.x-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.8s ease;
+}
+
+.x-bar-fill--teal   { background: linear-gradient(90deg, #0097A7, #56CCF2); }
+.x-bar-fill--green  { background: linear-gradient(90deg, #2E7D32, #6FCF97); }
+.x-bar-fill--amber  { background: linear-gradient(90deg, #E65100, var(--accent-amber)); }
+.x-bar-fill--red    { background: linear-gradient(90deg, #B71C1C, #EB5757); }
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes x-radar-sweep {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes x-snn-spike {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.85); }
+}
+
+@keyframes x-damage-pulse {
+  0%, 100% { fill-opacity: 0.42; }
+  50%       { fill-opacity: 0.65; }
+}
+
+@keyframes x-flicker {
+  0%, 96%, 100% { opacity: 1; }
+  97%            { opacity: 0.3; }
+  98%            { opacity: 0.9; }
+  99%            { opacity: 0.5; }
+}
+
+@keyframes x-slide-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes x-pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(74,124,89,0.6); }
+  50%       { box-shadow: 0 0 0 6px rgba(74,124,89,0); }
+}
+
+@keyframes x-bridge-flow {
+  0%   { stroke-dashoffset: 60; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* ============================================================
+   SAR MAP POLYGON
+   ============================================================ */
+.x-sar-cata-zone {
+  animation: x-damage-pulse 1.5s ease-in-out infinite;
+}
+
+.x-sar-fog {
+  filter: blur(18px);
+  mix-blend-mode: screen;
+  transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.x-sar-baseline-fog {
+  filter: blur(25px);
+  mix-blend-mode: color-dodge;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.x-radar-sweep-line {
+  stroke: var(--x-satellite-teal);
+  stroke-width: 1px;
+  stroke-opacity: 0.5;
+  filter: drop-shadow(0 0 5px var(--x-satellite-teal));
+  transform-origin: center;
+}
+
+/* ─────────────────────────────────────────────────────────────
+ * 7. UTILS & MODIFIERS
+ * ───────────────────────────────────────────────────────────── */
+.leaflet-popup-content-wrapper {
+  background: var(--earth-charcoal) !important;
+  border: 1px solid var(--earth-soil) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6) !important;
+  border-radius: 6px !important;
+}
+
+.leaflet-popup-tip {
+  background: var(--earth-charcoal) !important;
+}
+
+.leaflet-popup-close-button {
+  color: var(--earth-sand) !important;
+}
+
+/* ============================================================
+   TRIAGE PIPELINE LAYOUT
+   ============================================================ */
+.x-triage-grid {
+  display: grid;
+  grid-template-columns: 280px 1.4fr 1.1fr;
+  gap: 1px; /* for grid lines */
+  background: var(--earth-soil); /* grid line color */
+  height: 100%;
+}
+
+.x-triage-column {
+  background: var(--x-bg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.x-triage-column--left {
+  background: var(--earth-obsidian);
+}
+
+.x-metric-dial {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 4px solid var(--earth-soil);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.x-metric-dial__fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--accent-amber);
+  opacity: 0.15;
+  transition: height 1s ease-out;
+}
+
+.x-priority-tag {
+  font-family: var(--x-font-terminal);
+  font-size: 0.5rem;
+  padding: 1px 4px;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+/* SCROLLBARS FOR TRIAGE */
+.x-triage-column::-webkit-scrollbar { width: 3px; }
+.x-triage-column::-webkit-scrollbar-track { background: transparent; }
+.x-triage-column::-webkit-scrollbar-thumb { background: var(--earth-soil); }
+

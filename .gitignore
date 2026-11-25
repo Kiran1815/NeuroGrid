@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+dev-dist/
+dist-ssr/
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+!.env.production
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Android build outputs
+client/android/.gradle/
+client/android/build/
+client/android/app/build/
+client/android/local.properties
+*.apk
+*.aab
